@@ -4,7 +4,7 @@ services:
     runtime: python
     region: frankfurt
     plan: free
-    buildCommand: >-pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate && python manage.py create_admin
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate && python manage.py create_admin
     startCommand: "gunicorn nyumba.wsgi --workers 2 --bind 0.0.0.0:$PORT --timeout 120"
     envVars:
       - key: PYTHON_VERSION
