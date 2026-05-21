@@ -4,7 +4,7 @@ services:
     runtime: python
     region: frankfurt
     plan: free
-    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate"
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput && echo "from apps.accounts.models import User; User.objects.filter(phone_number='+254700000000').exists() or User.objects.create_superuser(phone_number='+254700000000', password='NyumbaAdmin2026!', full_name='Admin')" | python manage.py shell"
     startCommand: "python manage.py migrate && gunicorn nyumba.wsgi --workers 2 --bind 0.0.0.0:$PORT --timeout 120"
     envVars:
       - key: PYTHON_VERSION
