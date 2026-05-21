@@ -68,7 +68,15 @@ SIMPLE_JWT = {
 
 _origins = os.getenv("FRONTEND_URL","http://localhost:3000")
 CORS_ALLOWED_ORIGINS = [u.strip() for u in _origins.split(",") if u.strip()]
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "authorization",
+    "content-type",
+    "origin",
+    "x-requested-with",
+]
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Africa/Nairobi"
